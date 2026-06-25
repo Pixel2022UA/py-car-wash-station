@@ -30,7 +30,7 @@ class CarWashStation:
                           * (self.clean_power - car.clean_mark)
                           * self.average_rating
                           / self.distance_from_city_center)
-        return income_one_car
+        return round(income_one_car, 1)
 
     def wash_single_car(self, car: Car) -> None:
         if car.clean_mark < self.clean_power:
@@ -41,16 +41,3 @@ class CarWashStation:
         self.average_rating = round(((self.average_rating
                                       * (self.count_of_ratings - 1)
                                       + rate) / self.count_of_ratings) , 1)
-
-
-bmw = Car(comfort_class=3, clean_mark=3, brand="BMW")
-audi = Car(comfort_class=4, clean_mark=9, brand="Audi")
-
-wash_station = CarWashStation(
-    distance_from_city_center=5,
-    clean_power=6,
-    average_rating=3.5,
-    count_of_ratings=6
-)
-
-income = wash_station.serve_cars([bmw, audi])
